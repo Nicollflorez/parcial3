@@ -1,0 +1,32 @@
+extends ../layout/main
+
+block content
+    .container
+        h2.text-center.mb-4(style="color: #241375") Lista de Servicios
+
+        if typeof error !== 'undefined' && error
+            .alert.alert-danger= error
+
+        if servicios.length
+            table.table.table-striped
+                thead
+                    tr
+                        th ID
+                        th Nombre
+                        th Descripción
+                        th Precio
+                        th Acciones
+                tbody
+                    each servicio in servicios
+                        tr
+                            td= servicio.id
+                            td= servicio.nombre_servicio
+                            td= servicio.descripcion
+                            td $#{servicio.precio}
+                            td
+                                a.btn.btn-sm.btn-warning(href=`/servicios/editar/${servicio.id}`) Editar
+        else
+            p.text-muted No hay servicios registrados.
+
+        .mt-3
+            a.btn.btn-success(href="/servicios/crear") Crear Nuevo Servicio

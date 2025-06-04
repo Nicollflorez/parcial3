@@ -1,0 +1,47 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Crear Paciente
+
+    if typeof query !== 'undefined' && query.exito
+      .alert.alert-success Registrado con éxito
+
+    if typeof error !== 'undefined' && error
+      .alert.alert-danger= error
+
+    form(action="/pacientes/crear", method="POST")
+      .mb-3
+        label.form-label(for="nombre") Nombre completo:
+        input.form-control(type="text", name="nombre", id="nombre", required, value=datos ? datos.nombre : '')
+
+      .mb-3
+        label.form-label(for="cedula") Cédula:
+        input.form-control(type="text", name="cedula", id="cedula", required, value=datos ? datos.cedula : '')
+
+      .mb-3
+        label.form-label(for="fechaNacimiento") Fecha de nacimiento:
+        input.form-control(type="date", name="fechaNacimiento", id="fechaNacimiento", required, value=datos ? datos.fechaNacimiento : '')
+
+      .mb-3
+        label.form-label(for="genero") Género:
+        select.form-select(name="genero", id="genero", required)
+          option(value="") Selecciona una opción
+          option(value="M", selected=datos && datos.genero === 'M') Masculino
+          option(value="F", selected=datos && datos.genero === 'F') Femenino
+          option(value="O", selected=datos && datos.genero === 'O') Otro
+
+      .mb-3
+        label.form-label(for="telefono") Teléfono:
+        input.form-control(type="tel", name="telefono", id="telefono", required, value=datos ? datos.telefono : '')
+
+      .mb-3
+        label.form-label(for="correo") Correo electrónico:
+        input.form-control(type="email", name="correo", id="correo", required, value=datos ? datos.correo : '')
+
+      .mb-3
+        label.form-label(for="direccion") Dirección:
+        input.form-control(type="text", name="direccion", id="direccion", required, value=datos ? datos.direccion : '')
+
+      button.btn.btn-primary.mt-3(type="submit") Registrar
+

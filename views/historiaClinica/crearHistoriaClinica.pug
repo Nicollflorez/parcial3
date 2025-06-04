@@ -1,0 +1,30 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Crear Historia Clínica
+
+    if query.exito
+      .alert.alert-success Historia clínica registrada con éxito
+
+    if error
+      .alert.alert-danger= error
+
+    form(action="/historia-clinica/crear", method="POST")
+      .mb-3
+        label.form-label(for="id_paciente") ID Paciente:
+        input.form-control(type="number", name="id_paciente", id="id_paciente", required, value=datos.id_paciente || '')
+
+      .mb-3
+        label.form-label(for="fecha") Fecha:
+        input.form-control(type="date", name="fecha", id="fecha", required)
+
+      .mb-3
+        label.form-label(for="descripcion") Descripción:
+        textarea.form-control(name="descripcion", id="descripcion", required)= datos.descripcion || ''
+
+      .mb-3
+        label.form-label(for="tratamiento") Tratamiento:
+        textarea.form-control(name="tratamiento", id="tratamiento", required)= datos.tratamiento || ''
+
+      button.btn.btn-primary.mt-3(type="submit") Registrar Historia

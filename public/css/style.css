@@ -1,0 +1,221 @@
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Barra superior */
+.top-bar {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.top-bar i {
+  margin-right: 0.3rem;
+}
+
+/* Navbar */
+.navbar-brand img {
+  height: 40px; /* Altura del logo */
+}
+
+.navbar-nav .nav-link {
+  padding: 0.7rem 1rem;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+  background-color: #f8f9fa; /* Color de fondo al pasar el ratón */
+}
+
+/* Contenido principal */
+.display-3 {
+  font-size: 3rem;
+  color: #343a40;
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+/* Redes sociales */
+.fa-facebook-f {
+  color: #241375;
+}
+
+.fa-twitter {
+  color: #241375;
+}
+
+.fa-instagram {
+  color: #e4405f;
+}
+
+.fa-youtube {
+  color: #ff0000;
+}
+
+/* Sección HERO (versión activa y corregida) */
+.hero {
+  background: url('/img/sonrisa.jpg') center/cover no-repeat;
+  height: 90vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* sombra oscura encima de la imagen */
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero h3 {
+  font-size: 1.5rem;
+}
+
+.hero .btn {
+  background-color: #3a2b96;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.hero .btn:hover {
+  background-color: #120f30;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Tarjetas, iconos e info */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-body i {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.rounded-4 {
+  border-radius: 1rem;
+}
+
+.icon-reloj {
+  background: url('/img/clock.png') no-repeat left center;
+  padding-left: 22px;
+  background-size: 16px 16px;
+  background-position-y: center;
+}
+
+.icon-telefono {
+  background: url('/img/telefono.webp') no-repeat left center;
+  padding-left: 22px;
+  background-size: 16px 16px;
+  background-position-y: center;
+}
+
+.icon-ubicacion {
+  background: url('/img/ubicacion.jpg') no-repeat left center;
+  padding-left: 22px;
+  background-size: 16px 16px;
+  background-position-y: center;
+}
+
+/* Header superior */
+.header-top {
+  background-color: #455566;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #100935;
+}
+
+.header-top img {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* Textos pequeños */
+.fs-small {
+  font-size: 0.85rem;
+  color: #47436b;
+}
+
+/* Barra superior oscura */
+.topbar {
+  background-color: #241375;
+  color: #f0eff5;
+}
+
+.topbar small {
+  color: #faf9ff;
+}
+
+/* Colores personalizados */
+.color-custom-servicios {
+  color: #241375 !important;
+}
+
+.color-custom-testimoniales {
+  color: #241375 !important;
+}
+
+.custom-brand-color {
+  color: #241375 !important;
+  font-weight: 600;
+  font-size: 1.7rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón personalizado */
+.btn-cita {
+  background-color: #241375;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 25px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cita:hover {
+  background-color: #120f30;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Footer personalizado */
+.footer-custom {
+  background-color: #241375;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+/* Para mantener coherencia con el diseño */
+form label {
+  color: #241375; /* Color primario de Beauty Smile */
+}
+
+button.btn-primary {
+  background-color: #241375;
+  border-color: #241375;
+}
+
+button.btn-primary:hover {
+  background-color: #241375;
+  border-color: #241375;
+}

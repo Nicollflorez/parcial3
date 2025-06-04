@@ -1,0 +1,24 @@
+header
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+    .container
+      a.navbar-brand(href='/') Beauty Smile
+      button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav.ms-auto
+          li.nav-item
+            a.nav-link(href='/') Inicio
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#', id='pacientesDropdown', role='button', data-bs-toggle='dropdown', aria-expanded='false') Pacientes
+            ul.dropdown-menu(aria-labelledby='pacientesDropdown')
+              li: a.dropdown-item(href='/pacientes/crear') Crear Paciente
+              li: a.dropdown-item(href='/pacientes/listar') Listar Pacientes
+              li: a.dropdown-item(href='/pacientes/editar') Editar Paciente
+          li.nav-item
+            a.nav-link(href='/citas') Citas
+          li.nav-item
+            a.nav-link(href='/servicios') Servicios
+          li.nav-item
+            a.nav-link(href='/historia-clinica') Historia Clínica
+          li.nav-item
+            a.nav-link(href='/usuarios/login') Login

@@ -1,0 +1,33 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Lista de Citas
+
+    if typeof error !== 'undefined' && error
+      .alert.alert-danger= error
+
+    if citas.length
+      table.table.table-striped
+        thead
+          tr
+            th ID
+            th Paciente
+            th Servicio
+            th Fecha
+            th Hora
+            th Estado
+        tbody
+          each cita in citas
+            tr
+              td= cita.id
+              td= cita.Paciente ? cita.Paciente.nombre : 'Sin paciente'
+              td= cita.Servicio ? cita.Servicio.nombre_servicio : 'Sin servicio'
+              td= cita.fecha
+              td= cita.hora
+              td= cita.estado
+    else
+      p.text-muted No hay citas registradas.
+
+    .mt-3
+      a.btn.btn-success(href="/citas/nueva") Nueva Cita

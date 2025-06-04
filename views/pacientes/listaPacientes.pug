@@ -1,0 +1,36 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Lista de Pacientes
+
+    if typeof error !== 'undefined' && error
+      .alert.alert-danger= error
+
+    if pacientes.length
+      table.table.table-striped
+        thead
+          tr
+            th ID
+            th Nombre
+            th Cédula
+            th Fecha de Nacimiento
+            th Género
+            th Teléfono
+            th Correo
+            th Dirección
+        tbody
+          each paciente in pacientes
+            tr
+              td= paciente.id
+              td= paciente.nombre
+              td= paciente.cedula
+              td= paciente.fechaNacimiento ? new Date(paciente.fechaNacimiento).toISOString().split('T')[0] : 'Sin fecha'
+              td= paciente.genero
+              td= paciente.telefono
+              td= paciente.correo
+              td= paciente.direccion
+    else
+      p.text-muted No hay pacientes registrados.
+
+

@@ -1,0 +1,27 @@
+extends ../layout/main
+
+block content
+    div.container.mt-5
+        div.row.justify-content-center
+            div.col-md-6
+                h2.text-center.mb-4 Iniciar Sesión
+
+                if errores
+                    div.alert.alert-danger
+                        ul.list-unstyled
+                            each error in errores
+                                li= error.msg
+
+                form(method="POST" action="/usuarios/login")
+                    div.mb-3
+                        label.form-label(for="nombre_usuario") Nombre de Usuario
+                        input.form-control(type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Tu nombre de usuario" value=(nombre_usuario ? nombre_usuario : ''))
+                    div.mb-3
+                        label.form-label(for="contrasena") Contraseña
+                        input.form-control(type="password" id="contrasena" name="contrasena" placeholder="Tu contraseña")
+                    button.btn.btn-primary.w-100(type="submit") Iniciar Sesión
+                    div.mt-3.text-center
+                        p ¿No tienes cuenta? 
+                            a(href="#") Regístrate aquí
+
+

@@ -1,0 +1,53 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Buscar y Editar Paciente
+
+    // Formulario para buscar al paciente por nombre
+    form(method='GET', action='/pacientes/editar')
+      .mb-3
+        label.form-label(for='nombreBusqueda') Ingrese el nombre del paciente
+        input.form-control(type='text', name='nombre', id='nombreBusqueda', required)
+      button.btn.btn-primary(type='submit') Buscar
+
+    if paciente
+      hr
+      h3.text-center.mb-4(style="color: #241375") Editar Datos del Paciente
+
+      form(method='POST', action=`/pacientes/editar/${paciente.id}`)
+        .mb-3
+          label.form-label(for='nombre') Nombre Completo
+          input.form-control(type='text', name='nombre', id='nombre', required, value=paciente.nombre)
+
+        .mb-3
+          label.form-label(for='cedula') Cédula
+          input.form-control(type='text', name='cedula', id='cedula', required, value=paciente.cedula)
+
+        .mb-3
+          label.form-label(for='fechaNacimiento') Fecha de Nacimiento
+          input.form-control(type='date', name='fechaNacimiento', id='fechaNacimiento', required, value=paciente.fechaNacimiento)
+
+        .mb-3
+          label.form-label(for='genero') Género
+          select.form-select(name='genero', id='genero', required)
+            option(value='') Selecciona una opción
+            option(value='M', selected=paciente.genero === 'M') Masculino
+            option(value='F', selected=paciente.genero === 'F') Femenino
+
+        .mb-3
+          label.form-label(for='telefono') Teléfono
+          input.form-control(type='text', name='telefono', id='telefono', required, value=paciente.telefono)
+
+        .mb-3
+          label.form-label(for='correo') Correo Electrónico
+          input.form-control(type='email', name='correo', id='correo', required, value=paciente.correo)
+
+        .mb-3
+          label.form-label(for='direccion') Dirección
+          input.form-control(type='text', name='direccion', id='direccion', required, value=paciente.direccion)
+
+        button.btn.btn-success(type='submit') Actualizar Paciente
+
+    else if typeof nombre !== 'undefined'
+      .alert.alert-warning.mt-4 No se encontró ningún paciente con el nombre "#{nombre}"

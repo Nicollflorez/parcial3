@@ -1,0 +1,104 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{nombreSitio} - Beauty Smile
+
+    // CSS: primero Bootstrap, luego tu propio estilo
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/style.css")
+
+  body
+    // TOPBAR personalizada con clase propia
+    .topbar.py-2
+      .container.d-flex.justify-content-between.align-items-center.flex-wrap
+        // Horario
+        .d-flex.align-items-start.gap-2
+          img(src="/img/clock.png", alt="Horario", width="20", height="20")
+          .d-flex.flex-column
+            small 08:00 AM - 06:00 PM
+            small lunes - viernes
+
+        // Ubicación
+        .d-flex.align-items-start.gap-2
+          img(src="/img/ubicacion.jpg", alt="Ubicación", width="20", height="20")
+          .d-flex.flex-column
+            small carrera 34A #51-70
+            small Bucaramanga, Colombia
+
+        // Teléfono
+        .d-flex.align-items-start.gap-2
+          img(src="/img/telefono.webp", alt="Teléfono", width="20", height="20")
+          .d-flex.flex-column
+            small Servicio disponible
+            small (+57) 315 946 4491
+
+    // NAVBAR
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.shadow-sm
+      .container
+        a.navbar-brand(href='/')
+          strong.text-primary.custom-brand-color Beauty Smile
+        button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto
+            li.nav-item
+              a.nav-link(href='/') Inicio
+
+            li.nav-item.dropdown
+              a#navbarDropdownPacientes.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false')
+                | Pacientes
+              ul.dropdown-menu(aria-labelledby='navbarDropdownPacientes')
+                li
+                  a.dropdown-item(href='/pacientes/crear') Crear Paciente
+                li
+                  a.dropdown-item(href='/pacientes') Listar Pacientes
+                li
+                  a.dropdown-item(href='/pacientes/editar') Editar Paciente
+
+            li.nav-item.dropdown
+              a#navbarDropdownCitas.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false')
+                | Citas
+              ul.dropdown-menu(aria-labelledby='navbarDropdownCitas')
+                li
+                  a.dropdown-item(href='/citas/nueva') Nueva Cita
+                li
+                  a.dropdown-item(href='/citas') Listar Citas
+                li
+                  // Este enlace ya apunta a /citas/editar, lo cual es correcto para el nuevo flujo
+                  a.dropdown-item(href='/citas/editar') Editar Cita
+
+            li.nav-item.dropdown
+              a#navbarDropdownServicios.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false')
+                | Servicios
+              ul.dropdown-menu(aria-labelledby='navbarDropdownServicios')
+                li
+                  a.dropdown-item(href='/servicios/crear') Crear Servicio
+                li
+                  a.dropdown-item(href='/servicios') Listar Servicios
+               
+            li.nav-item.dropdown
+              a#navbarDropdownHistoriaClinica.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false')
+                | Historia Clínica
+              ul.dropdown-menu(aria-labelledby='navbarDropdownHistoriaClinica')
+                li
+                  a.dropdown-item(href='/historia-clinica/crear') Crear Historia
+                li
+                  a.dropdown-item(href='/historia-clinica') Listar Historias
+                li
+                  a.dropdown-item(href='/historia-clinica/editar') Editar Historia
+
+            li.nav-item
+              a.nav-link(href='/usuarios/login') Login
+
+    // CONTENIDO DINÁMICO
+    .container.mt-5
+      block content
+
+    // FOOTER
+    footer.footer-custom.text-center.py-3
+      p &copy; #{actualYear} Beauty Smile. Todos los derechos reservados.
+
+    // JS Bootstrap
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js")

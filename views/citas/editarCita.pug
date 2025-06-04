@@ -1,0 +1,58 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Buscar y Editar Cita
+
+    // Formulario para buscar la cita por ID
+    form(method='POST', action='/citas/editar')
+      .mb-3
+        label.form-label(for='idCita') Ingrese el ID de la cita:
+        input.form-control(type='text', name='idCita', id='idCita', required, value=idCitaBusqueda || '')
+      button.btn.btn-primary(type='submit') Buscar
+
+    // Mostrar errores si existen
+    if error
+      .alert.alert-danger.mt-4.text-center #{error}
+
+    // Si se encontró una cita, mostrar el formulario de edición
+    if cita
+      hr
+      h3.text-center.mb-4(style="color: #241375") Editar Datos de la Cita
+
+      form(method='POST', action=`/citas/editar/${cita.id}`)
+        .mb-3
+          label.form-label(for='paciente') Paciente
+          select.form-select(name='paciente', id='paciente', required)
+            option(value='') Selecciona un paciente
+            each p in pacientes
+              option(value=p.id, selected=cita.id_paciente === p.id)= p.nombre
+
+        .mb-3
+          label.form-label(for='servicio') Servicio
+          select.form-select(name='servicio', id='servicio', required)
+            option(value='') Selecciona un servicio
+            if servicios && servicios.length === 0
+              option(value='', disabled) No hay servicios disponibles
+            else
+              each s in servicios
+                // CORRECCIÓN AQUÍ: Usar s.nombre_servicio en lugar de s.nombre
+                option(value=s.id, selected=cita.id_servicio === s.id)= s.nombre_servicio
+
+        .mb-3
+          label.form-label(for='fecha') Fecha
+          - const formattedFecha = cita.fecha ? new Date(cita.fecha).toISOString().split('T')[0] : '';
+          input.form-control(type='date', name='fecha', id='fecha', required, value=formattedFecha)
+
+        .mb-3
+          label.form-label(for='hora') Hora
+          input.form-control(type='time', name='hora', id='hora', required, value=cita.hora)
+
+        .mb-3
+          label.form-label(for='estado') Estado
+          select.form-select(name='estado', id='estado', required)
+            option(value='pendiente', selected=cita.estado === 'pendiente') Pendiente
+            option(value='confirmada', selected=cita.estado === 'confirmada') Confirmada
+            option(value='cancelada', selected=cita.estado === 'cancelada') Cancelada
+
+        button.btn.btn-success(type='submit') Actualizar Cita

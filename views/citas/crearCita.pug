@@ -1,0 +1,36 @@
+extends ../layout/main
+
+block content
+    .container
+        h2.text-center.mb-4(style="color: #241375") Nueva Cita
+
+        if typeof query !== 'undefined' && query.exito
+            .alert.alert-success Cita creada con éxito
+
+        if typeof error !== 'undefined' && error
+            .alert.alert-danger= error
+
+        form(action="/citas/nueva", method="POST")
+            .mb-3
+                label.form-label(for="paciente") Paciente:
+                select.form-select(name="paciente", id="paciente", required)
+                    option(value="") Seleccione un paciente
+                    each paciente in pacientes
+                        option(value=paciente.id, selected=datos && datos.paciente == paciente.id)= paciente.nombre
+
+            .mb-3
+                label.form-label(for="servicio") Servicio:
+                select.form-select(name="servicio", id="servicio", required)
+                    option(value="") Seleccione un servicio
+                    each servicio in servicios
+                        option(value=servicio.id, selected=datos && datos.servicio == servicio.id)= servicio.nombre_servicio
+
+            .mb-3
+                label.form-label(for="fecha") Fecha:
+                input.form-control(type="date", name="fecha", id="fecha", required, value=datos ? datos.fecha : '')
+
+            .mb-3
+                label.form-label(for="hora") Hora:
+                input.form-control(type="time", name="hora", id="hora", required, value=datos ? datos.hora : '')
+
+            button.btn.btn-primary.mt-3(type="submit") Crear Cita

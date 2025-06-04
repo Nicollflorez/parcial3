@@ -1,0 +1,26 @@
+extends ../layout/main
+
+block content
+    .container
+        h2.text-center.mb-4(style="color: #241375") Crear Nuevo Servicio
+
+        if typeof query !== 'undefined' && query.exito
+            .alert.alert-success Servicio creado con éxito
+
+        if typeof error !== 'undefined' && error
+            .alert.alert-danger= error
+
+        form(action="/servicios/crear", method="POST")
+            .mb-3
+                label.form-label(for="nombre_servicio") Nombre del Servicio:
+                input.form-control(type="text", name="nombre_servicio", id="nombre_servicio", required, value=datos ? datos.nombre_servicio : '')
+
+            .mb-3
+                label.form-label(for="descripcion") Descripción:
+                textarea.form-control(name="descripcion", id="descripcion", rows="3")= datos ? datos.descripcion : ''
+
+            .mb-3
+                label.form-label(for="precio") Precio:
+                input.form-control(type="number", name="precio", id="precio", step="0.01", required, value=datos ? datos.precio : '')
+
+            button.btn.btn-primary.mt-3(type="submit") Guardar Servicio

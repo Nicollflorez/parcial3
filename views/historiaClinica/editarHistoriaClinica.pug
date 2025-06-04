@@ -1,0 +1,33 @@
+extends ../layout/main
+
+block content
+  .container
+    h2.text-center.mb-4(style="color: #241375") Buscar y Editar Historia Clínica
+
+    form(method="GET", action="/historia-clinica/editar")
+      .mb-3
+        label.form-label(for="id_paciente") Ingrese ID del Paciente:
+        input.form-control(type="number", name="id_paciente", id="id_paciente", required)
+      button.btn.btn-primary(type="submit") Buscar
+
+    if historia
+      hr
+      h3.text-center.mb-4(style="color: #241375") Editar Historia Clínica
+
+      form(method="POST", action=`/historia-clinica/editar/${historia.id}`)
+        .mb-3
+          label.form-label(for="antecedentes") Antecedentes:
+          textarea.form-control(name="antecedentes", id="antecedentes", required)= historia.antecedentes
+
+        .mb-3
+          label.form-label(for="diagnostico") Diagnóstico:
+          textarea.form-control(name="diagnostico", id="diagnostico", required)= historia.diagnostico
+
+        .mb-3
+          label.form-label(for="tratamiento") Tratamiento:
+          textarea.form-control(name="tratamiento", id="tratamiento", required)= historia.tratamiento
+
+        button.btn.btn-success(type="submit") Actualizar Historia
+
+    else if typeof id_paciente !== 'undefined'
+      .alert.alert-warning.mt-4 No se encontró historia clínica para el paciente con ID "#{id_paciente}"
