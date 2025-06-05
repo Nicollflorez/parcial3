@@ -1,0 +1,31 @@
+extends ../layout/main
+
+block content
+    .container
+        h2.text-center.mb-4(style="color: #241375") Editar Servicio
+
+        if servicio
+            h3.mb-3 Editar Servicio: #{servicio.nombre_servicio}
+            form(method='POST', action=`/servicios/editar/${servicio.id}`)
+                .mb-3
+                    label.form-label(for='nombre_servicio') Nombre del Servicio
+                    input.form-control(type='text', name='nombre_servicio', id='nombre_servicio', required, value=servicio.nombre_servicio)
+
+                .mb-3
+                    label.form-label(for='descripcion') Descripción
+                    textarea.form-control(name='descripcion', id='descripcion', rows='3')= servicio.descripcion
+
+                .mb-3
+                    label.form-label(for='precio') Precio
+                    input.form-control(type='number', name='precio', id='precio', step='0.01', required, value=servicio.precio)
+
+                button.btn.btn-success(type='submit') Actualizar Servicio
+        else
+            h3.mb-3 Buscar Servicio por Nombre
+            form(method='GET', action='/servicios/editar')
+                .mb-3
+                    label.form-label(for='nombre_servicio') Ingrese el nombre del servicio
+                    input.form-control(type='text', name='nombre_servicio', id='nombre_servicio', required)
+                button.btn.btn-primary(type='submit') Buscar Servicio
+            if typeof nombre_servicio !== 'undefined'
+                .alert.alert-warning.mt-4 No se encontró ningún servicio con el nombre "#{nombre_servicio}"
